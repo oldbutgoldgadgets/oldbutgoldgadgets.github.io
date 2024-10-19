@@ -52,180 +52,15 @@
                 <a class="tab active" href="#">문의하기</a>
             </div>
 
-<!-- Hamburger Dropdown for Main Tabs (visible on mobile) -->
-<div class="hamburger-menu">
-    <a class="tab" href="index.html">지금 판매 시 가격</a>
-    <a class="tab active" href="#">문의하기</a>
-</div>
+            <!-- Hamburger Dropdown for Main Tabs (visible on mobile) -->
+            <div class="hamburger-menu">
+                <a class="tab" href="index.html">지금 판매 시 가격</a>
+                <a class="tab active" href="#">문의하기</a>
+            </div>
         </div>
     </div>
 
-    <!-- Body with Secondary Tabs -->
-    <div class="container">
-
-        <!-- Toggle button for secondary tabs on mobile -->
-        <div class="body-top secondary-toggle">브랜드 선택 ▼</div>
-
-        <!-- Secondary Tabs (toggle on mobile) -->
-        <div class="secondary-tabs">
-            <div class="secondary-tab active" data-brand="apple">애플</div>
-            <div class="secondary-tab" data-brand="samsung-budget">삼성/보급</div>
-            <div class="secondary-tab" data-brand="samsung-premium">삼성/프리미엄</div>
-            <div class="secondary-tab" data-brand="samsung-note">삼성 노트</div>
-            <div class="secondary-tab" data-brand="samsung-s">삼성 S</div>
-            <div class="secondary-tab" data-brand="samsung-j">삼성 J/ON/WIDE</div>
-            <div class="secondary-tab" data-brand="lg-premium">LG 프리미엄</div>
-            <div class="secondary-tab" data-brand="lg-xq">LG X/Q</div>
-        </div>
-
-        <!-- Phone Lists go here -->
-        <div>
-            <div id="apple" class="phone-list"></div>
-            <div id="samsung-budget" class="phone-list"></div>
-            <div id="samsung-premium" class="phone-list"></div>
-            <div id="samsung-note" class="phone-list"></div>
-            <div id="samsung-s" class="phone-list"></div>
-            <div id="samsung-j" class="phone-list"></div>
-            <div id="lg-premium" class="phone-list"></div>
-            <div id="lg-xq" class="phone-list"></div>
-        </div>
-
-        <div id="loading" class="loading">불러오는 중...</div>
-    </div>
-
-    <!-- Existing scripts for phone data -->
     <script>
-
-        // Tab switching logic
-        const tabs = document.querySelectorAll('.secondary-tab');
-        const phoneLists = document.querySelectorAll('.phone-list');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                phoneLists.forEach(list => list.style.display = 'none');
-                document.getElementById(tab.getAttribute('data-brand')).style.display = 'flex';
-            });
-        });
-
-        // Google Sheets API setup
-        const SPREADSHEET_ID = '13T6APiYgxWArir_vI-wC47R29S6LFmTE7gexR2gbO5g'; // Your Spreadsheet ID
-        const SHEET_NAME = 'Sheet1'; // Correct sheet name
-        const API_KEY = 'AIzaSyDAHIYb0E5sdSMctYFjGhH_kqk-6jAr0s0'; // Your API Key
-        const apiURL = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
-
-        // Function to fetch data from Google Sheets
-        async function fetchPhonesFromSheets() {
-            try {
-                const response = await fetch(apiURL);
-                const data = await response.json();
-                return data.values; // Assuming phone data is in 'values' array
-            } catch (error) {
-                console.error('Error fetching data from Google Sheets:', error);
-                return [];
-            }
-        }
-
-        // Function to group phones by name and load them in one box
-        function loadPhonesFromData(fetchedData) {
-            const phoneData = {
-                apple: {},
-                "samsung-budget": {},
-                "samsung-premium": {},
-                "samsung-note": {},
-                "samsung-s": {},
-                "samsung-j": {},
-                "lg-premium": {},
-                "lg-xq": {}
-            };
-
-            // Grouping phones by name and adding multiple configurations into one box
-            fetchedData.forEach(row => {
-                const [brand, name, storage, A, Aminus, Bplus, used, screen, backPanel, compass, voice, faceID, camera, lcd] = row;
-
-                // Mapping brands to the front-end tab names
-                let mappedBrand;
-                switch (brand) {
-                    case '애플': mappedBrand = 'apple'; break;
-                    case '삼성/보급': mappedBrand = 'samsung-budget'; break;
-                    case '삼성/프리미엄': mappedBrand = 'samsung-premium'; break;
-                    case '삼성 노트': mappedBrand = 'samsung-note'; break;
-                    case '삼성 S': mappedBrand = 'samsung-s'; break;
-                    case '삼성 J/ON/WIDE': mappedBrand = 'samsung-j'; break;
-                    case 'LG 프리미엄': mappedBrand = 'lg-premium'; break;
-                    case 'LG X/Q': mappedBrand = 'lg-xq'; break;
-                    default: mappedBrand = ''; break;
-                }
-
-                if (mappedBrand) {
-                    // If the phone name already exists in the group, add its configuration
-                    if (!phoneData[mappedBrand][name]) {
-                        phoneData[mappedBrand][name] = [];
-                    }
-                    phoneData[mappedBrand][name].push({
-                        storage,
-                        prices: { A, Aminus, Bplus, used },
-                        deductions: { screen, backPanel, compass, voice, faceID, camera, lcd }
-                    });
-                }
-            });
-
-            // Now populate each brand's tab with its respective grouped phone data
-            Object.keys(phoneData).forEach(brand => {
-                loadGroupedPhones(brand, phoneData[brand]);
-            });
-        }
-
-        // Function to load grouped phone data into the UI
-        function loadGroupedPhones(brand, data) {
-            const container = document.getElementById(brand);
-            Object.keys(data).forEach(phoneName => {
-                const phoneConfigs = data[phoneName];
-                const phoneItem = document.createElement('div');
-                phoneItem.classList.add('phone-item');
-                phoneItem.innerHTML = `
-                    <div class="phone-details">
-                        <h2 class=phone-name>${phoneName}</h2>
-                        ${phoneConfigs.map(config => `
-                        <div class="phone-detail">    
-                        <div class="phone-storage">
-                            <h3 class="${config.storage ? '' : 'hidden'}">${config.storage}</h3>
-                        </div>
-                        <div class="phone-price">
-                            <div class="${config.prices.A ? '' : 'hidden'} phone-price-group">
-                                <div class="quality-group"><span class="phone-price-quality quality-a">A</span><span class="phone-price-price">${config.prices.A}만</span></div>
-                                <div class="quality-group"><span class="phone-price-quality">A-</span><span class="phone-price-price">${config.prices.Aminus}만</span></div>
-                                <div class="quality-group"><span class="phone-price-quality">B+</span><span class="phone-price-price">${config.prices.Bplus}만</span></div>
-                                <div class="quality-group"><span class="phone-price-quality">중고</span><span class="phone-price-price">${config.prices.used}만</span></div>
-                            </div>
-                                <div class="deductions-details">
-                                <p class="${config.deductions.screen ? '' : 'hidden'}">액정파손 <span>${config.deductions.screen}</span></p>
-                                <p class="${config.deductions.backPanel ? '' : 'hidden'}">뒷판 <span>${config.deductions.backPanel}</span></p>
-                                <p class="${config.deductions.compass ? '' : 'hidden'}">나침반 <span>${config.deductions.compass}</span></p>
-                                <p class="${config.deductions.voice ? '' : 'hidden'}">녹음 <span>${config.deductions.voice}</span></p>
-                                <p class="${config.deductions.faceID ? '' : 'hidden'}">페이스 <span>${config.deductions.faceID}</span></p>
-                                <p class="${config.deductions.camera ? '' : 'hidden'}">카메라 <span>${config.deductions.camera}</span></p>
-                                <p class="${config.deductions.lcd ? '' : 'hidden'}">LCD <span>${config.deductions.lcd}</span></p>
-                                </div>
-                            </div>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(phoneItem);
-            });
-        }
-
-        // Initial loading of phones
-        fetchPhonesFromSheets().then(fetchedData => {
-            loadPhonesFromData(fetchedData);
-            document.getElementById('loading').style.display = 'none';
-        });
-
-        // Initially show Apple phones
-        document.getElementById('apple').style.display = 'flex';
-
         // Hide nav on scroll down, show on scroll up
         let lastScrollTop = 0;
         const navTop = document.getElementById('navTop');
@@ -242,24 +77,24 @@
     </script>
     <!-- Menu toggle on mobile - Ensure the JS is executed after the DOM is loaded -->
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Hamburger menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        hamburgerMenu.classList.toggle('active');
-    });
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                hamburgerMenu.classList.toggle('active');
+            });
 
-    // Secondary tabs toggle on mobile
-    const secondaryToggle = document.querySelector('.secondary-toggle');
-    const secondaryTabs = document.querySelector('.secondary-tabs');
+            // Secondary tabs toggle on mobile
+            const secondaryToggle = document.querySelector('.secondary-toggle');
+            const secondaryTabs = document.querySelector('.secondary-tabs');
 
-    secondaryToggle.addEventListener('click', () => {
-        secondaryTabs.classList.toggle('active');
-    });
-});
+            secondaryToggle.addEventListener('click', () => {
+                secondaryTabs.classList.toggle('active');
+            });
+        });
     </script>
     <footer>
         <div class="container">
