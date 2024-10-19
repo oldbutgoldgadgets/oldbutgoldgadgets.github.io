@@ -259,7 +259,7 @@ a {
 }
 
 .phone-details p {
-    margin: 5px 0;
+    margin: 0;
     color: #666;
 }
 
@@ -310,7 +310,7 @@ a {
 .phone-price-quality {
     font-size: 1rem;
     font-weight: 600;
-    margin-right: 0.5rem;
+    margin-right: 0.25rem;
     color: #383e4b;
 }
 
@@ -328,14 +328,18 @@ a {
 }
 
 .deductions-details {
+    width:100%;
     display: flex;
-    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem 0 0 0;
     color: red;
 }
 
 .deductions-details p {
     font-weight: 600;
     color: #88929c;
+    width:25%;
 }
 
 .deductions-details span {
@@ -362,12 +366,77 @@ footer p {
     margin: 0;
 }
 
-/* Desktop (1024px and above) */
-@media only screen and (min-width: 1024px) {}
+@media only screen and (min-width: 1060px) and (max-width: 1200px) {
+    .phone-price-quality {
+        font-size: 0.75rem;
+        margin-right: 0.25rem;
+    }
+    
+    .phone-price-price {
+        font-size: 1rem;
+    }
+}
 
 /* Tablet (Between 768px and 1023px) */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {}
+@media only screen and (min-width: 861px) and (max-width: 1059px) {
+    .deductions-details p {
+        font-weight: 600;
+        color: #88929c;
+        width:33.333%;
+    }
+    .phone-price-quality {
+        font-size: 0.75rem;
+        margin-right: 0.25rem;
+    }
+    
+    .phone-price-price {
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 860px) {
+    .tab {
+        border-radius:0;
+    }
+    .phone-item {
+        flex:1;
+        padding:1rem;
+    }
 
+    .phone-list {
+        margin-top:0;
+        flex-direction:column;
+    }
+    .phone-name {
+        margin: 1rem 0 0 0;
+    }
+
+    .phone-storage {
+        width:32%;
+        height:8rem;
+        margin-bottom: 1.25rem;
+    }
+    .phone-price-group {
+        margin-bottom:1rem;
+    }
+    .phone-price {
+        margin-left:1.25rem;
+        width:100%;
+    }
+
+    .deductions-details {
+        display:flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+        justify-content: flex-start;
+        align-items: center;
+        font-size:0.875rem;
+    }
+    .deductions-details p {
+        font-weight: 600;
+        color: #88929c;
+        width:25%;
+    }
+}
 /* Mobile (Between 425px and 767px) */
 @media only screen and (max-width: 767px) {
 
@@ -417,10 +486,26 @@ footer p {
         /* Adjust depending on content */
         opacity: 1;
     }
+    .phone-storage { 
+        width:32%;
+        height:6rem;
+    }
+    .phone-price { 
+        margin-left:1.25rem;
+    }
+
+    .quality-group {
+        display:flex;
+        flex-direction: column;
+    }
+
+    .deductions-details p {
+        width: 25%;
+    }
 }
 
 /* Small Mobile (Up to 424px) */
-@media only screen and (max-width: 424px) {
+@media only screen and (max-width: 568px) {
     .tab {
         border-radius:0;
     }
@@ -464,5 +549,9 @@ footer p {
         justify-content: space-between;
         align-items: center;
         font-size:0.875rem;
+    }
+
+    .deductions-details p { 
+        width:50%;
     }
 }
