@@ -202,7 +202,7 @@ a {
     align-items: center;
     justify-content: flex-start;
     max-width: 780px;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     border-bottom: 1px solid #dee0e3;
 }
 
@@ -278,6 +278,15 @@ a {
 
 footer {
     margin: 4rem 0;
+}
+
+footer a {
+color:#383e4b;
+}
+
+footer p {
+    color:#979fb1;
+    margin:0;
 }
 
 /* Desktop (1024px and above) */
