@@ -401,6 +401,7 @@ footer p {
     .phone-item {
         flex:1;
         padding:1rem;
+        max-width:100%;
     }
 
     .phone-list {
