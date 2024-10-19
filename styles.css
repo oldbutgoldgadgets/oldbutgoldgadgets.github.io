@@ -1,41 +1,179 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+.color-purple {
+    color: #9370db;
+}
+
+.color-yellow {
+    color: #dbc970;
+}
+
+html {
+    overflow-x: hidden;;
+}
 
 body {
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    padding: 20px;
-    margin: 0;
-    background-color: #f4f4f4;
+    font-optical-sizing: auto;
+    font-style: normal;
+    margin: 1rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background-color: #f7f8f9;
 }
 
-h1 {
+.body-top {
+    margin-top:6rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    max-width: 1320px;
+    margin: 0 auto;
+}
+
+hr {
+    border: 1px solid #dee0e3;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(247, 248, 249, 0.8);
+    backdrop-filter: blur(0.5rem);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.nav-container {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hidden-nav {
+    transform: translateY(-100%);
+    /* Hides the nav by moving it up */
+}
+
+.nav-top-bi {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
     text-align: center;
-    margin-bottom: 20px;
+}
+
+.nav-top-bi h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bold;
+    font-optical-sizing: auto;
+    font-style: normal;
+    letter-spacing: 0;
+    text-shadow:
+        /* text-shadow highlight */
+        0 -2px 0 var(--highlight);
+}
+
+.logo {
+    width: auto;
+    height: 4rem;
+}
+
+.logo-text {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.tabs {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tab {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1.25rem;
+    margin-right: 0.5rem;
+    background-color: #e9eaec;
+    color: #383e4b;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+    box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+}
+
+.tab.active {
+    background-color: #9370db;
+    color: white;
+}
+
+
+.secondary-tabs {
+    height: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.secondary-tab {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    color: #383e4b;
+    -webkit-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+    box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+}
+
+.secondary-tab.active {
+    background-color: #9370db;
+    border-radius: 0.5rem;
+    color: white;
 }
 
 .phone-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    gap: 1.5rem;
 }
 
 .phone-item {
     display: flex;
-    width: 100%;
-    max-width: 600px;
-    padding: 15px;
+    flex-direction: column;
+    flex: 1 1 calc(50% - 2rem);
+    /* Take 50% width minus the gap */
+    box-sizing: border-box;
+    padding: 1rem 1.5rem;
+    border: 1px solid #dee0e3;
+    border-radius: 1rem;
     background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.phone-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-right: 20px;
 }
 
 .phone-details {
@@ -44,8 +182,7 @@ h1 {
 
 .phone-details h3 {
     margin: 0;
-    font-size: 20px;
-    color: #333;
+    font-size: 1rem;
 }
 
 .phone-details p {
@@ -53,8 +190,109 @@ h1 {
     color: #666;
 }
 
+.phone-name {
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    color:#383e4b;
+}
+
+.phone-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 780px;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #dee0e3;
+}
+
+.phone-storage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 8rem;
+    height: 6rem;
+    border: 1px solid #dee0e3;
+    border-radius: 0.5rem;
+    background-color: #f1f2f3;
+}
+
+.phone-price {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.phone-price-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.phone-price-quality {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    color: #383e4b;
+}
+
+.phone-price-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111314;
+}
+
+.deductions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.875rem;
+    color: red;
+}
+
+.deductions-details {
+    display: flex;
+    margin: 0;
+    color: red;
+}
+
+.deductions-details p {
+    font-weight: 600;
+    color: #88929c;
+}
+
+.deductions-details span {
+    color: red;
+    margin-right: 0.5rem;
+}
+
 .loading {
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
 }
+
+footer {
+    margin: 4rem 0;
+}
+
+/* Desktop (1024px and above) */
+@media only screen and (min-width: 1024px) {}
+
+/* Tablet (Between 768px and 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {}
+
+/* Mobile (Between 425px and 767px) */
+@media only screen and (min-width: 425px) and (max-width: 767px) {
+    .secondary-tabs {
+        height:100%;
+        flex-direction:row;
+    }
+}
+
+/* Small Mobile (Up to 424px) */
+@media only screen and (max-width: 424px) {}
