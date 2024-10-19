@@ -4,31 +4,472 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="미개봉 중고 국내 최저가는 역시 영등포 전당포!">
-    <meta name="author" content="C.B. Lee">
-    <meta name="generator" content="Hugo 0.88.1">
-    <meta content='#111314' name='theme-color' />
-    <meta content='website' property='og:type' />
-    <meta content='https://oldbutgoldgadgets.github.io/' property='og:url' />
-    <meta content='영등포 전당포' property='og:title' />
-    <meta content='assets/brand/og.png' property='og:image' />
-    <meta content='미개봉 중고 국내 최저가는 역시 영등포 전당포!' property='og:description' />
-    <meta content='영등포 전당포' property='og:site_name' />
-    <meta content='ko_KR' property='og:locale' />
-    <link rel="shortcut icon" href="assets/ico/favicon.png" type="image/png">
+    <title>폰벅스 - 당신의 최고가 폰 매입처</title>
 
-    <title>영등포 전당포</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
+
+    <style>
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            margin: 1rem;
+            line-height: 1.5;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            background-color: #f7f8f9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        hr {
+            border: 1px solid #dee0e3;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(247, 248, 249, 0.8);
+            backdrop-filter: blur(0.5rem);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hidden-nav {
+            transform: translateY(-100%);
+            /* Hides the nav by moving it up */
+        }
+
+        .nav-top-bi {
+            margin-left: 1rem;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: flex-start;
+            text-align: center;
+        }
+
+        .nav-top-bi h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-optical-sizing: auto;
+            font-style: normal;
+            letter-spacing: 0;
+            color: #111314;
+        }
+
+        /* .nav-top-bi p {
+            font-size: 0.875rem;
+            margin: 0 0 -0.75rem 0;
+            font-family: "Jua", sans-serif;
+            font-weight: 400;
+            font-optical-sizing: auto;
+            font-style: normal;
+            letter-spacing: 0.25rem;
+        } */
+
+        .logo {
+            width: auto;
+            height: 4rem;
+        }
+
+        .logo-text {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tabs {
+            height: 4rem;
+            margin-right: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .tab {
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            margin-right: 0.5rem;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        .tab.active {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        .tab-content {
+            margin-top: 20px;
+        }
+
+        .phone-list {
+            display: none;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-top: 6rem;
+            gap: 1.5rem;
+        }
+
+        .phone-item {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 calc(50% - 2rem);
+            /* Take 50% width minus the gap */
+            box-sizing: border-box;
+            padding: 2rem 1rem;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .phone-details {
+            flex-grow: 1;
+        }
+
+        .phone-details h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .phone-details h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .phone-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .phone-detail {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            maxi-width:780px;
+        }
+
+        .phone-storage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 8rem;
+            height: 6rem;
+            border: 1px solid #dee0e3;
+            border-radius: 0.5rem;
+            background-color: #f1f2f3;
+        }
+
+        .phone-price {
+            margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .phone-price-group {
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: space-between;
+        }
+
+        .phone-price-quality {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            color:#383e4b;
+        }
+
+        .phone-price-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #111314;
+        }
+
+        .deductions {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            color: red;
+        }
+
+        .deductions-details {
+            display: flex;
+            margin: 0;
+            font-size: 0.875rem;
+            color: red;
+        }
+
+        .deductions-details p {
+            font-weight: 600;
+            color:#88929c;
+        }
+
+        .deductions-details span {
+            color: red;
+            margin-right: 0.5rem;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        footer {
+            margin: 12rem 1rem;
+        }
+
+        /* Desktop (1024px and above) */
+        @media only screen and (min-width: 1024px) {}
+
+        /* Tablet (Between 768px and 1023px) */
+        @media only screen and (min-width: 768px) and (max-width: 1023px) {}
+
+        /* Mobile (Between 425px and 767px) */
+        @media only screen and (min-width: 425px) and (max-width: 767px) {}
+
+        /* Small Mobile (Up to 424px) */
+        @media only screen and (max-width: 424px) {}
+    </style>
+
 </head>
 
 <body>
-    <h1>영등포 전당포</h1>
-    <div id="phone-list" class="phone-list">
-        <!-- Phone items will be loaded here -->
+    <div class="nav-top" id="navTop">
+        <a class="nav-top-bi" href="#">
+            <div class="logo" id="logo-container">
+                <lottie-player src="https://lottie.host/dd51260a-1176-48f5-afb4-1262c40d9f65/st4VGrVyyH.json"
+                    background="transparent" speed="1" loop autoplay>
+                </lottie-player>
+            </div>
+            <div class="logo-text">
+                <!-- <p>폰·생·폰·사</p> -->
+                <h1>PhoneBUGS</h1>
+            </div>
+        </a>
+        <div class="tabs">
+            <div class="tab active" data-brand="apple">애플</div>
+            <div class="tab" data-brand="samsung-budget">삼성/보급</div>
+            <div class="tab" data-brand="samsung-premium">삼성/프리미엄</div>
+            <div class="tab" data-brand="samsung-note">삼성 노트</div>
+            <div class="tab" data-brand="samsung-s">삼성 S</div>
+            <div class="tab" data-brand="samsung-j">삼성 J/ON/WIDE</div>
+            <div class="tab" data-brand="lg-premium">LG 프리미엄</div>
+            <div class="tab" data-brand="lg-xq">LG X/Q</div>
+        </div>
     </div>
-    <div id="loading" class="loading">더 불러오는 중...</div>
 
-    <script src="script.js"></script>
+    <div id="apple" class="phone-list">
+        <!-- 애플 phones will be loaded here -->
+    </div>
+    <div id="samsung-budget" class="phone-list">
+        <!-- 삼성/보급 phones will be loaded here -->
+    </div>
+    <div id="samsung-premium" class="phone-list">
+        <!-- 삼성/프리미엄 phones will be loaded here -->
+    </div>
+    <div id="samsung-note" class="phone-list">
+        <!-- 삼성 노트 phones will be loaded here -->
+    </div>
+    <div id="samsung-s" class="phone-list">
+        <!-- 삼성 S phones will be loaded here -->
+    </div>
+    <div id="samsung-j" class="phone-list">
+        <!-- 삼성 J/ON/WIDE phones will be loaded here -->
+    </div>
+    <div id="lg-premium" class="phone-list">
+        <!-- LG 프리미엄 phones will be loaded here -->
+    </div>
+    <div id="lg-xq" class="phone-list">
+        <!-- LG X/Q phones will be loaded here -->
+    </div>
+
+    <div id="loading" class="loading">불러오는 중...</div>
+
+    <!-- Existing scripts for phone data -->
+    <script>
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.tab');
+        const phoneLists = document.querySelectorAll('.phone-list');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                phoneLists.forEach(list => list.style.display = 'none');
+                document.getElementById(tab.getAttribute('data-brand')).style.display = 'flex';
+            });
+        });
+
+        // Google Sheets API setup
+        const SPREADSHEET_ID = '13T6APiYgxWArir_vI-wC47R29S6LFmTE7gexR2gbO5g'; // Your Spreadsheet ID
+        const SHEET_NAME = 'Sheet1'; // Correct sheet name
+        const API_KEY = 'AIzaSyDAHIYb0E5sdSMctYFjGhH_kqk-6jAr0s0'; // Your API Key
+        const apiURL = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`;
+
+        // Function to fetch data from Google Sheets
+        async function fetchPhonesFromSheets() {
+            try {
+                const response = await fetch(apiURL);
+                const data = await response.json();
+                return data.values; // Assuming phone data is in 'values' array
+            } catch (error) {
+                console.error('Error fetching data from Google Sheets:', error);
+                return [];
+            }
+        }
+
+        // Function to group phones by name and load them in one box
+        function loadPhonesFromData(fetchedData) {
+            const phoneData = {
+                apple: {},
+                "samsung-budget": {},
+                "samsung-premium": {},
+                "samsung-note": {},
+                "samsung-s": {},
+                "samsung-j": {},
+                "lg-premium": {},
+                "lg-xq": {}
+            };
+
+            // Grouping phones by name and adding multiple configurations into one box
+            fetchedData.forEach(row => {
+                const [brand, name, storage, A, Aminus, Bplus, used, screen, backPanel, compass, voice, faceID, camera, lcd] = row;
+
+                // Mapping brands to the front-end tab names
+                let mappedBrand;
+                switch (brand) {
+                    case '애플': mappedBrand = 'apple'; break;
+                    case '삼성/보급': mappedBrand = 'samsung-budget'; break;
+                    case '삼성/프리미엄': mappedBrand = 'samsung-premium'; break;
+                    case '삼성 노트': mappedBrand = 'samsung-note'; break;
+                    case '삼성 S': mappedBrand = 'samsung-s'; break;
+                    case '삼성 J/ON/WIDE': mappedBrand = 'samsung-j'; break;
+                    case 'LG 프리미엄': mappedBrand = 'lg-premium'; break;
+                    case 'LG X/Q': mappedBrand = 'lg-xq'; break;
+                    default: mappedBrand = ''; break;
+                }
+
+                if (mappedBrand) {
+                    // If the phone name already exists in the group, add its configuration
+                    if (!phoneData[mappedBrand][name]) {
+                        phoneData[mappedBrand][name] = [];
+                    }
+                    phoneData[mappedBrand][name].push({
+                        storage,
+                        prices: { A, Aminus, Bplus, used },
+                        deductions: { screen, backPanel, compass, voice, faceID, camera, lcd }
+                    });
+                }
+            });
+
+            // Now populate each brand's tab with its respective grouped phone data
+            Object.keys(phoneData).forEach(brand => {
+                loadGroupedPhones(brand, phoneData[brand]);
+            });
+        }
+
+        // Function to load grouped phone data into the UI
+        function loadGroupedPhones(brand, data) {
+            const container = document.getElementById(brand);
+            Object.keys(data).forEach(phoneName => {
+                const phoneConfigs = data[phoneName];
+                const phoneItem = document.createElement('div');
+                phoneItem.classList.add('phone-item');
+                phoneItem.innerHTML = `
+                    <div class="phone-details">
+                        <h2>${phoneName}</h2>
+                        ${phoneConfigs.map(config => `
+                        <hr>
+                        <div class="phone-detail">    
+                        <div class="phone-storage">
+                            <h3 class="${config.storage ? '' : 'hidden'}">${config.storage}</h3>
+                        </div>
+                        <div class="phone-price">
+                            <div class="${config.prices.A ? '' : 'hidden'} phone-price-group">
+                                <div class="quality-group"><span class="phone-price-quality quality-a">A</span><span class="phone-price-price">${config.prices.A}만</span></div>
+                                <div class="quality-group"><span class="phone-price-quality">A-</span><span class="phone-price-price">${config.prices.Aminus}만</span></div>
+                                <div class="quality-group"><span class="phone-price-quality">B+</span><span class="phone-price-price">${config.prices.Bplus}만</span></div>
+                                <div class="quality-group"><span class="phone-price-quality">중고</span><span class="phone-price-price">${config.prices.used}만</span></div>
+                            </div>
+                                <div class="deductions-details">
+                                <p class="${config.deductions.screen ? '' : 'hidden'}">액정파손: <span>${config.deductions.screen}</span></p>
+                                <p class="${config.deductions.backPanel ? '' : 'hidden'}">뒷판: <span>${config.deductions.backPanel}</span></p>
+                                <p class="${config.deductions.compass ? '' : 'hidden'}">나침반: <span>${config.deductions.compass}</span></p>
+                                <p class="${config.deductions.voice ? '' : 'hidden'}">녹음: <span>${config.deductions.voice}</span></p>
+                                <p class="${config.deductions.faceID ? '' : 'hidden'}">페이스: <span>${config.deductions.faceID}</span></p>
+                                <p class="${config.deductions.camera ? '' : 'hidden'}">카메라: <span>${config.deductions.camera}</span></p>
+                                <p class="${config.deductions.lcd ? '' : 'hidden'}">LCD: <span>${config.deductions.lcd}</span></p>
+                                </div>
+                            </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(phoneItem);
+            });
+        }
+
+        // Initial loading of phones
+        fetchPhonesFromSheets().then(fetchedData => {
+            loadPhonesFromData(fetchedData);
+            document.getElementById('loading').style.display = 'none';
+        });
+
+        // Initially show Apple phones
+        document.getElementById('apple').style.display = 'flex';
+
+        // Hide nav on scroll down, show on scroll up
+        let lastScrollTop = 0;
+        const navTop = document.getElementById('navTop');
+
+        window.addEventListener('scroll', function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > lastScrollTop) {
+                navTop.classList.add('hidden-nav'); // Hide nav
+            } else {
+                navTop.classList.remove('hidden-nav'); // Show nav
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+    <footer>
+        build with CB's Love
+    </footer>
+    <!-- Lottie JSON Animation -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 
 </html>
