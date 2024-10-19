@@ -449,7 +449,49 @@
         }
 
         /* Small Mobile (Up to 424px) */
-        @media only screen and (max-width: 424px) {}
+        @media only screen and (max-width: 424px) {
+            .phone-item {
+                flex:1;
+                padding:1rem;
+            }
+
+            .phone-list {
+                margin-top:0;
+            }
+            .phone-name {
+                margin: 1rem 0 0 0;
+            }
+            .phone-detail {
+                flex-direction: column;
+            }
+
+            .phone-storage {
+                width:100%;
+                height:4rem;
+                margin-bottom: 1.25rem;
+            }
+            .phone-price-group {
+                margin-bottom:1rem;
+            }
+            .phone-price {
+                margin-left: 0;
+                width:100%;
+            }
+
+            .quality-group {
+                display:flex;
+                flex-direction: column;
+
+            }
+
+            .deductions-details {
+                display:flex;
+                flex-wrap:wrap;
+                justify-content: space-between;
+                align-items: center;
+                font-size:0.875rem;
+            }
+        }
     </Style>
 
 </head>
