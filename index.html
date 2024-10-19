@@ -33,6 +33,10 @@
             background-color: #f7f8f9;
         }
 
+        .body-top {
+            margin-top:6rem;
+        }
+
         .hidden {
             display: none;
         }
@@ -59,6 +63,10 @@
             backdrop-filter: blur(0.5rem);
             transition: transform 0.3s ease-in-out;
             z-index: 1000;
+        }
+
+        .nav-container {
+            padding: 0 1rem;
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -71,7 +79,6 @@
         }
 
         .nav-top-bi {
-            margin-left: 1rem;
             height: 100%;
             display: flex;
             flex-direction: row;
@@ -107,7 +114,6 @@
 
         .tabs {
             height: 4rem;
-            margin-right: 1rem;
             display: flex;
             flex-direction: row;
             justify-content: flex-end;
@@ -116,7 +122,6 @@
         }
 
         .tab {
-            width: 100%;
             text-align: center;
             font-size: 1rem;
             font-weight: 500;
@@ -135,15 +140,39 @@
             color: white;
         }
 
-        .tab-content {
-            margin-top: 20px;
+
+        .secondary-tabs {
+            height: 4rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .secondary-tab {
+            width: 100%;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            color: #383e4b;
+            -webkit-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+            -moz-box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+            box-shadow: inset 8px 8px 6px -12px rgba(255, 255, 255, 1);
+        }
+
+        .secondary-tab.active {
+            background-color: #9370db;
+            border-radius: 0.5rem;
+            color: white;
         }
 
         .phone-list {
             display: none;
             flex-direction: row;
             flex-wrap: wrap;
-            margin-top: 6rem;
+            margin-top: 2rem;
             gap: 1.5rem;
         }
 
@@ -176,6 +205,7 @@
         .phone-name {
             margin: 1rem 0;
             font-size: 1.5rem;
+            color:#383e4b;
         }
 
         .phone-detail {
@@ -232,14 +262,13 @@
         .deductions {
             display: flex;
             flex-direction: column;
-            margin-top: 1rem;
+            margin-top: 0.875rem;
             color: red;
         }
 
         .deductions-details {
             display: flex;
             margin: 0;
-            font-size: 0.875rem;
             color: red;
         }
 
@@ -260,7 +289,7 @@
         }
 
         footer {
-            margin: 12rem 1rem;
+            margin: 4rem 0;
         }
 
         /* Desktop (1024px and above) */
@@ -280,6 +309,7 @@
 
 <body>
     <div class="nav-top" id="navTop">
+        <div class="nav-container container">
         <a class="nav-top-bi" href="#">
             <div class="logo" id="logo-container">
                 <lottie-player src="https://lottie.host/dd51260a-1176-48f5-afb4-1262c40d9f65/st4VGrVyyH.json"
@@ -292,18 +322,23 @@
             </div>
         </a>
         <div class="tabs">
-            <div class="tab active" data-brand="apple">애플</div>
-            <div class="tab" data-brand="samsung-budget">삼성/보급</div>
-            <div class="tab" data-brand="samsung-premium">삼성/프리미엄</div>
-            <div class="tab" data-brand="samsung-note">삼성 노트</div>
-            <div class="tab" data-brand="samsung-s">삼성 S</div>
-            <div class="tab" data-brand="samsung-j">삼성 J/ON/WIDE</div>
-            <div class="tab" data-brand="lg-premium">LG 프리미엄</div>
-            <div class="tab" data-brand="lg-xq">LG X/Q</div>
+            <div class="tab active" data-brand="apple">지금 판매 시 가격</div>
+            <div class="tab" data-brand="samsung-budget">문의하기</div>
         </div>
+    </div>
     </div>
 
     <div class="container">
+        <div class="body-top secondary-tabs">
+            <div class="secondary-tab active" data-brand="apple">애플</div>
+            <div class="secondary-tab" data-brand="samsung-budget">삼성/보급</div>
+            <div class="secondary-tab" data-brand="samsung-premium">삼성/프리미엄</div>
+            <div class="secondary-tab" data-brand="samsung-note">삼성 노트</div>
+            <div class="secondary-tab" data-brand="samsung-s">삼성 S</div>
+            <div class="secondary-tab" data-brand="samsung-j">삼성 J/ON/WIDE</div>
+            <div class="secondary-tab" data-brand="lg-premium">LG 프리미엄</div>
+            <div class="secondary-tab" data-brand="lg-xq">LG X/Q</div>
+        </div>
         <div id="apple" class="phone-list">
             <!-- 애플 phones will be loaded here -->
         </div>
@@ -335,7 +370,7 @@
     <!-- Existing scripts for phone data -->
     <script>
         // Tab switching logic
-        const tabs = document.querySelectorAll('.tab');
+        const tabs = document.querySelectorAll('.secondary-tab');
         const phoneLists = document.querySelectorAll('.phone-list');
 
         tabs.forEach(tab => {
@@ -438,13 +473,13 @@
                                 <div class="quality-group"><span class="phone-price-quality">중고</span><span class="phone-price-price">${config.prices.used}만</span></div>
                             </div>
                                 <div class="deductions-details">
-                                <p class="${config.deductions.screen ? '' : 'hidden'}">액정파손: <span>${config.deductions.screen}</span></p>
-                                <p class="${config.deductions.backPanel ? '' : 'hidden'}">뒷판: <span>${config.deductions.backPanel}</span></p>
-                                <p class="${config.deductions.compass ? '' : 'hidden'}">나침반: <span>${config.deductions.compass}</span></p>
-                                <p class="${config.deductions.voice ? '' : 'hidden'}">녹음: <span>${config.deductions.voice}</span></p>
-                                <p class="${config.deductions.faceID ? '' : 'hidden'}">페이스: <span>${config.deductions.faceID}</span></p>
-                                <p class="${config.deductions.camera ? '' : 'hidden'}">카메라: <span>${config.deductions.camera}</span></p>
-                                <p class="${config.deductions.lcd ? '' : 'hidden'}">LCD: <span>${config.deductions.lcd}</span></p>
+                                <p class="${config.deductions.screen ? '' : 'hidden'}">액정파손 <span>${config.deductions.screen}</span></p>
+                                <p class="${config.deductions.backPanel ? '' : 'hidden'}">뒷판 <span>${config.deductions.backPanel}</span></p>
+                                <p class="${config.deductions.compass ? '' : 'hidden'}">나침반 <span>${config.deductions.compass}</span></p>
+                                <p class="${config.deductions.voice ? '' : 'hidden'}">녹음 <span>${config.deductions.voice}</span></p>
+                                <p class="${config.deductions.faceID ? '' : 'hidden'}">페이스 <span>${config.deductions.faceID}</span></p>
+                                <p class="${config.deductions.camera ? '' : 'hidden'}">카메라 <span>${config.deductions.camera}</span></p>
+                                <p class="${config.deductions.lcd ? '' : 'hidden'}">LCD <span>${config.deductions.lcd}</span></p>
                                 </div>
                             </div>
                             </div>
@@ -479,7 +514,9 @@
         });
     </script>
     <footer>
-        build with CB's Love
+    <div class="container">
+        Website built by <a href="https://themercenary.org" target="_blank">The Mercenary</a>
+    </div>
     </footer>
     <!-- Lottie JSON Animation -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
