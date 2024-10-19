@@ -128,6 +128,33 @@ a {
     color: white;
 }
 
+/* Hamburger menu icon styles */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #383e4b;
+}
+
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #e9eaec;
+    padding: 1rem;
+    width: 100%;
+}
+
+/* Toggle button for secondary tabs on mobile */
+.secondary-toggle {
+    display: none;
+    background-color: #f1f1f1;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #dee0e3;
+    margin-bottom: 1rem;
+}
+
 
 .secondary-tabs {
     height: 4rem;
@@ -296,10 +323,34 @@ footer p {
 @media only screen and (min-width: 768px) and (max-width: 1023px) {}
 
 /* Mobile (Between 425px and 767px) */
-@media only screen and (min-width: 425px) and (max-width: 767px) {
+@media only screen and (max-width: 767px) {
+        /* Hide the regular tabs and show hamburger icon */
+    .tabs {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger-menu {
+        display: none; /* Hidden until hamburger click */
+    }
+
+    /* Hide secondary tabs, show toggle button */
     .secondary-tabs {
-        height:100%;
-        flex-direction:row;
+        display: none;
+    }
+
+    .secondary-toggle {
+        display: block;
+    }
+
+    /* Show secondary tabs when toggled */
+    .secondary-tabs.active {
+        display: flex;
+        flex-direction: column;
+    }
     }
 }
 
