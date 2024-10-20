@@ -470,6 +470,7 @@ footer p {
     .hamburger {
         display: flex;
         justify-content: flex-end;
+        padding-right: 0.5rem;
     }
 
     .hamburger-menu {
