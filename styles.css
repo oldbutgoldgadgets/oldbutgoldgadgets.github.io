@@ -90,9 +90,9 @@ a {
 }
 
 .logo {
-    max-width:4rem;
-    width: auto;
-    height: 4rem;
+    display:flex;
+    width: 3rem;
+    height: 3rem;
 }
 
 .logo-text {
@@ -130,6 +130,14 @@ a {
     color: white;
 }
 
+.hamburger-menu .tabs {
+    padding:0;
+}
+
+.hamburger-menu .tab {
+    margin-right:0;
+}
+
 /* Hamburger menu icon styles */
 .hamburger {
     display: none;
@@ -151,7 +159,7 @@ a {
     opacity: 0;
     flex-direction: column;
     background-color: #f1f2f3;
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     width: 100%;
     position: absolute;
     top: 5rem;
