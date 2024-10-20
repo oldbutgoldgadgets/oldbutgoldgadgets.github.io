@@ -62,17 +62,30 @@
 
     <script>
         // Hide nav on scroll down, show on scroll up
-        let lastScrollTop = 0;
-        const navTop = document.getElementById('navTop');
+        document.addEventListener('DOMContentLoaded', function () {
+            let lastScrollTop = 0; // Track last scroll position
+            const navTop = document.getElementById('navTop');
+            const threshold = 16;  // Add a threshold to make the nav less sensitive when near the top
 
-        window.addEventListener('scroll', function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navTop.classList.add('hidden-nav'); // Hide nav
-            } else {
-                navTop.classList.remove('hidden-nav'); // Show nav
-            }
-            lastScrollTop = scrollTop;
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // If near the top, ensure the navbar stays visible
+                if (scrollTop <= threshold) {
+                    navTop.classList.remove('hidden-nav'); // Show nav when near the top
+                }
+                // If scrolling up and not near the top, show the nav
+                else if (scrollTop < lastScrollTop) {
+                    navTop.classList.remove('hidden-nav'); // Show nav
+                }
+                // If scrolling down, hide the nav
+                else if (scrollTop > lastScrollTop) {
+                    navTop.classList.add('hidden-nav'); // Hide nav
+                }
+
+                // Update the last scroll position to the current one
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative values
+            });
         });
     </script>
     <!-- Menu toggle on mobile - Ensure the JS is executed after the DOM is loaded -->

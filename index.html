@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css" />
- </head>
+</head>
 
 <body>
     <!-- Navigation with Hamburger Menu for Main Tabs -->
@@ -52,11 +52,11 @@
                 <a class="tab" href="contact.html">문의하기</a>
             </div>
 
-<!-- Hamburger Dropdown for Main Tabs (visible on mobile) -->
-<div class="hamburger-menu">
-    <a class="tab active" href="#">지금 판매 시 가격</a>
-    <a class="tab" href="contact.html">문의하기</a>
-</div>
+            <!-- Hamburger Dropdown for Main Tabs (visible on mobile) -->
+            <div class="hamburger-menu">
+                <a class="tab active" href="#">지금 판매 시 가격</a>
+                <a class="tab" href="contact.html">문의하기</a>
+            </div>
         </div>
     </div>
 
@@ -227,39 +227,52 @@
         document.getElementById('apple').style.display = 'flex';
 
         // Hide nav on scroll down, show on scroll up
-        let lastScrollTop = 0;
-        const navTop = document.getElementById('navTop');
+        document.addEventListener('DOMContentLoaded', function () {
+            let lastScrollTop = 0; // Track last scroll position
+            const navTop = document.getElementById('navTop');
+            const threshold = 16;  // Add a threshold to make the nav less sensitive when near the top
 
-        window.addEventListener('scroll', function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                navTop.classList.add('hidden-nav'); // Hide nav
-            } else {
-                navTop.classList.remove('hidden-nav'); // Show nav
-            }
-            lastScrollTop = scrollTop;
+            window.addEventListener('scroll', function () {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                // If near the top, ensure the navbar stays visible
+                if (scrollTop <= threshold) {
+                    navTop.classList.remove('hidden-nav'); // Show nav when near the top
+                }
+                // If scrolling up and not near the top, show the nav
+                else if (scrollTop < lastScrollTop) {
+                    navTop.classList.remove('hidden-nav'); // Show nav
+                }
+                // If scrolling down, hide the nav
+                else if (scrollTop > lastScrollTop) {
+                    navTop.classList.add('hidden-nav'); // Hide nav
+                }
+
+                // Update the last scroll position to the current one
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative values
+            });
         });
     </script>
     <!-- Menu toggle on mobile - Ensure the JS is executed after the DOM is loaded -->
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-    // Hamburger menu toggle
-    const hamburger = document.querySelector('.hamburger');
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hamburger menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const hamburgerMenu = document.querySelector('.hamburger-menu');
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        hamburgerMenu.classList.toggle('active');
-    });
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                hamburgerMenu.classList.toggle('active');
+            });
 
-    // Secondary tabs toggle on mobile
-    const secondaryToggle = document.querySelector('.secondary-toggle');
-    const secondaryTabs = document.querySelector('.secondary-tabs');
+            // Secondary tabs toggle on mobile
+            const secondaryToggle = document.querySelector('.secondary-toggle');
+            const secondaryTabs = document.querySelector('.secondary-tabs');
 
-    secondaryToggle.addEventListener('click', () => {
-        secondaryTabs.classList.toggle('active');
-    });
-});
+            secondaryToggle.addEventListener('click', () => {
+                secondaryTabs.classList.toggle('active');
+            });
+        });
     </script>
     <footer>
         <div class="container">
