@@ -8,7 +8,7 @@
 
 html {
     overflow-x: hidden;
-    ;
+    word-break: keep-all;
 }
 
 body {
@@ -90,7 +90,7 @@ a {
 }
 
 .logo {
-    display:flex;
+    display: flex;
     width: 3rem;
     height: 3rem;
 }
@@ -131,11 +131,11 @@ a {
 }
 
 .hamburger-menu .tabs {
-    padding:0;
+    padding: 0;
 }
 
 .hamburger-menu .tab {
-    margin-right:0;
+    margin-right: 0;
 }
 
 /* Hamburger menu icon styles */
@@ -170,7 +170,7 @@ a {
 }
 
 .hamburger-menu.active {
-    display:flex;
+    display: flex;
     max-height: 600px;
     opacity: 1;
 }
@@ -304,7 +304,7 @@ a {
 
 .phone-price {
     margin-left: 1rem;
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -340,7 +340,7 @@ a {
 }
 
 .deductions-details {
-    width:100%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -351,7 +351,7 @@ a {
 .deductions-details p {
     font-weight: 600;
     color: #88929c;
-    width:25%;
+    width: 25%;
 }
 
 .deductions-details span {
@@ -383,7 +383,7 @@ footer p {
         font-size: 0.75rem;
         margin-right: 0.25rem;
     }
-    
+
     .phone-price-price {
         font-size: 1rem;
     }
@@ -394,62 +394,70 @@ footer p {
     .deductions-details p {
         font-weight: 600;
         color: #88929c;
-        width:33.333%;
+        width: 33.333%;
     }
+
     .phone-price-quality {
         font-size: 0.75rem;
         margin-right: 0.25rem;
     }
-    
+
     .phone-price-price {
         font-size: 1rem;
     }
 }
+
 @media only screen and (max-width: 860px) {
     .tab {
-        border-radius:0;
+        border-radius: 0;
     }
+
     .phone-item {
-        flex:1;
-        padding:1rem;
-        max-width:100%;
+        flex: 1;
+        padding: 1rem;
+        max-width: 100%;
     }
 
     .phone-list {
-        margin-top:0;
-        flex-direction:column;
+        margin-top: 0;
+        flex-direction: column;
     }
+
     .phone-name {
         margin: 1rem 0 0 0;
     }
 
     .phone-storage {
-        width:32%;
-        height:8rem;
+        width: 32%;
+        height: 8rem;
         margin-bottom: 1.25rem;
     }
+
     .phone-price-group {
-        margin-bottom:1rem;
+        margin-bottom: 1rem;
     }
+
     .phone-price {
-        margin-left:1.25rem;
-        width:100%;
+        margin-left: 1.25rem;
+        width: 100%;
     }
 
     .deductions-details {
-        display:flex;
+        display: flex;
         flex-direction: row;
-        flex-wrap:wrap;
+        flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
-        font-size:0.875rem;
+        font-size: 0.875rem;
     }
+
     .deductions-details p {
         font-weight: 600;
         color: #88929c;
-        width:25%;
+        width: 25%;
     }
 }
+
 /* Mobile (Between 425px and 767px) */
 @media only screen and (max-width: 767px) {
 
@@ -471,7 +479,7 @@ footer p {
     /* Hamburger menu will now smoothly transition */
     .hamburger-menu.active {
         max-height: 600px;
-        opacity:1;
+        opacity: 1;
     }
 
     /* Hide secondary tabs, show toggle button */
@@ -500,16 +508,18 @@ footer p {
         /* Adjust depending on content */
         opacity: 1;
     }
-    .phone-storage { 
-        width:32%;
-        height:6rem;
+
+    .phone-storage {
+        width: 32%;
+        height: 6rem;
     }
-    .phone-price { 
-        margin-left:1.25rem;
+
+    .phone-price {
+        margin-left: 1.25rem;
     }
 
     .quality-group {
-        display:flex;
+        display: flex;
         flex-direction: column;
     }
 
@@ -521,51 +531,56 @@ footer p {
 /* Small Mobile (Up to 424px) */
 @media only screen and (max-width: 568px) {
     .tab {
-        border-radius:0;
+        border-radius: 0;
     }
+
     .phone-item {
-        flex:1;
-        padding:1rem;
+        flex: 1;
+        padding: 1rem;
     }
 
     .phone-list {
-        margin-top:0;
+        margin-top: 0;
     }
+
     .phone-name {
         margin: 1rem 0 0 0;
     }
+
     .phone-detail {
         flex-direction: column;
     }
 
     .phone-storage {
-        width:100%;
-        height:4rem;
+        width: 100%;
+        height: 4rem;
         margin-bottom: 1.25rem;
     }
+
     .phone-price-group {
-        margin-bottom:1rem;
+        margin-bottom: 1rem;
     }
+
     .phone-price {
         margin-left: 0;
-        width:100%;
+        width: 100%;
     }
 
     .quality-group {
-        display:flex;
+        display: flex;
         flex-direction: column;
 
     }
 
     .deductions-details {
-        display:flex;
-        flex-wrap:wrap;
+        display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        font-size:0.875rem;
+        font-size: 0.875rem;
     }
 
-    .deductions-details p { 
-        width:50%;
+    .deductions-details p {
+        width: 50%;
     }
 }
