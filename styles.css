@@ -408,9 +408,6 @@ footer p {
 }
 
 @media only screen and (max-width: 860px) {
-    .tab {
-        border-radius: 0;
-    }
 
     .phone-item {
         flex: 1;
@@ -464,6 +461,9 @@ footer p {
     /* Hide the regular tabs and show hamburger icon */
     .tabs {
         display: none;
+    }
+    .tab {
+        border-radius: 0;
     }
 
     .hamburger {
@@ -530,11 +530,7 @@ footer p {
 
 /* Small Mobile (Up to 424px) */
 @media only screen and (max-width: 568px) {
-    .tab {
-        border-radius: 0;
-    }
-
-    .phone-item {
+     .phone-item {
         flex: 1;
         padding: 1rem;
     }
