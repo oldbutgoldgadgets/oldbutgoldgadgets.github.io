@@ -90,6 +90,7 @@ a {
 }
 
 .logo {
+    max-width:4rem;
     width: auto;
     height: 4rem;
 }
