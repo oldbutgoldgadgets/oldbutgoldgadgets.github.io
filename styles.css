@@ -450,7 +450,8 @@ footer p {
     }
 
     .hamburger {
-        display: block;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .hamburger-menu {
