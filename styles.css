@@ -55,7 +55,7 @@ a {
 }
 
 .nav-container {
-    padding: 0 1rem;
+    padding: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -242,6 +242,7 @@ a {
     display: none;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 2rem;
     gap: 1.5rem;
 }
@@ -256,7 +257,7 @@ a {
     border: 1px solid #dee0e3;
     border-radius: 1rem;
     background-color: #fff;
-    max-width: calc(50% - 2rem);
+    max-width: calc(50% - 0.5rem);
 }
 
 .phone-details {
@@ -408,7 +409,7 @@ footer p {
 }
 
 @media only screen and (max-width: 860px) {
-
+  
     .phone-item {
         flex: 1;
         padding: 1rem;
